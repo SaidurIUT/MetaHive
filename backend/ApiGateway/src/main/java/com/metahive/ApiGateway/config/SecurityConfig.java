@@ -1,5 +1,6 @@
 package com.metahive.ApiGateway.config;
 
+import jakarta.ws.rs.HttpMethod;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -30,9 +31,10 @@ public class SecurityConfig {
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeExchange(exchanges -> exchanges
-                        .pathMatchers("/actuator/**").permitAll() // Allow actuator endpoints
-                        .pathMatchers("/user/public/**").permitAll() // Public user endpoints
-                        .anyExchange().authenticated() // Require authentication for all other routes
+                        .pathMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Handle preflight requests
+                        .pathMatchers("/actuator/**").permitAll()
+                        .pathMatchers("/user/public/**").permitAll()
+                        .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt.jwtDecoder(reactiveJwtDecoder()))
@@ -52,20 +54,6 @@ public class SecurityConfig {
                 .build();
     }
 
-    @Bean
-    public CorsWebFilter corsWebFilter() {
-        CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Configure as needed
-        corsConfig.setMaxAge(3600L);
-        corsConfig.addAllowedMethod("*");
-        corsConfig.addAllowedHeader("*");
-        corsConfig.setAllowCredentials(true);
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", corsConfig);
-
-        return new CorsWebFilter(source);
-    }
 
     @Bean
     public ServerLogoutSuccessHandler keycloakLogoutSuccessHandler() {

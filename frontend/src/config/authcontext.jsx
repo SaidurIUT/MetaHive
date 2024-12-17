@@ -17,17 +17,17 @@ export const AuthProvider = ({ children }) => {
       .init({
         onLoad: "check-sso", // Check for existing session
         pkceMethod: "S256",
-        silentCheckSsoRedirectUri:
-          window.location.origin + "/silent-check-sso.html",
+        // silentCheckSsoRedirectUri:
+        //   window.location.origin + "/silent-check-sso.html",
       })
       .then((authenticated) => {
         setIsAuthenticated(authenticated);
+
         setKeycloakObject(keycloak); // Pass the keycloak instance
         if (authenticated) {
+          localStorage.setItem("authToken", keycloak.token);
           toast.success("Login successful!");
         }
-        console.log("Keycloak initialized:", keycloak.authenticated);
-        console.log("Keycloak Object:", keycloak);
       })
       .catch((error) => {
         console.error("Keycloak initialization failed:", error);
@@ -40,7 +40,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, keycloak: keycloakObject }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, login, keycloak: keycloakObject }}
+    >
       {children}
     </AuthContext.Provider>
   );
