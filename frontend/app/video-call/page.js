@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import SockJS from "sockjs-client";
 import { Client as StompClient } from "@stomp/stompjs";
 
-export default function WebRTCPage() {
+export default function VideoCall() {
   const [localId, setLocalId] = useState("");
   const [remoteId, setRemoteId] = useState("");
   const [stompClient, setStompClient] = useState(null);

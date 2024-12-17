@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "@stomp/stompjs": "^7.0.0",
-    "next": "15.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "next": "15.1.0",
     "sockjs-client": "^1.6.1"
   },
   "devDependencies": {
