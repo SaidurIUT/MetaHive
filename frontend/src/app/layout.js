@@ -1,8 +1,16 @@
+// src/app/layout.js
+
+"use client";
+
 import { Inter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
-import { AuthProvider } from "../config/authcontext";
-
+import { AuthProvider } from "../config/authContext";
+import { initializeTheme } from "../config/colorUtils";
+import ClientThemeProvider from "../providers/clientThemeProvider";
+import Navbar from "../components/basicComponents/navbar";
+import Footer from "../components/basicComponents/footer";
+import { useEffect } from "react";
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const robotoMono = Roboto_Mono({
   variable: "--font-roboto-mono",
@@ -16,6 +24,10 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  useEffect(() => {
+    initializeTheme();
+  }, []);
+
   return (
     <html lang="en">
       <head>
@@ -24,8 +36,14 @@ export default function RootLayout({ children }) {
         <meta name="description" content={metadata.description} />
       </head>
       <body className={`${inter.variable} ${robotoMono.variable} antialiased`}>
-        <Toaster />
-        <AuthProvider>{children}</AuthProvider>
+        <ClientThemeProvider>
+          <Toaster />
+          <AuthProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </AuthProvider>
+        </ClientThemeProvider>
       </body>
     </html>
   );

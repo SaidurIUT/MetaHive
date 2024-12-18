@@ -21,16 +21,6 @@ privateAxios.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-
-    // Log full request details
-    console.log("Making request:", {
-      url: config.url,
-      method: config.method,
-      headers: config.headers,
-      baseURL: config.baseURL,
-      withCredentials: config.withCredentials,
-    });
-
     return config;
   },
   (error) => {

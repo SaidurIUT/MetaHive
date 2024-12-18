@@ -8,10 +8,6 @@ const nextConfig = {
       },
     ];
   },
-  // Other configurations
-  experimental: {
-    appDir: true,
-  },
 };
 
 module.exports = nextConfig;

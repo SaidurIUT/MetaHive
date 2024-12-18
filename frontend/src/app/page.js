@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useAuth } from "../config/authcontext";
+import { useAuth } from "../config/authContext";
 import {
   testUserServivePrivateApi,
   testUserServivePublicApi,
@@ -28,15 +28,16 @@ export default function Home() {
   // Function to load data from the private API
   const loadTestPrivate = async () => {
     try {
-     
-
       if (!keycloak?.token) {
         console.error("No token available");
         return;
       }
 
       const response = await testUserServivePrivateApi();
-      console.log("API Call Successful , response from app/page.js: ", response);
+      console.log(
+        "API Call Successful , response from app/page.js: ",
+        response
+      );
       setLoadData(response);
     } catch (err) {
       console.error("Comprehensive Private API Error:", {
@@ -98,6 +99,26 @@ export default function Home() {
       <h1>Congratulations! You are logged in to MetaHive 🎉</h1>
       <p style={{ fontSize: "20px", marginTop: "10px" }}>
         Welcome, <strong>{userName}</strong>!
+      </p>
+      <p>
+        Your Token is: <br />
+        <code style={{ wordWrap: "break-word" }}>{keycloak?.token}</code>
+      </p>
+      <p>
+        Your Token is: <br />
+        <code style={{ wordWrap: "break-word" }}>{keycloak?.token}</code>
+      </p>
+      <p>
+        Your Token is: <br />
+        <code style={{ wordWrap: "break-word" }}>{keycloak?.token}</code>
+      </p>
+      <p>
+        Your Token is: <br />
+        <code style={{ wordWrap: "break-word" }}>{keycloak?.token}</code>
+      </p>
+      <p>
+        Your Token is: <br />
+        <code style={{ wordWrap: "break-word" }}>{keycloak?.token}</code>
       </p>
       <p>
         Your Token is: <br />
