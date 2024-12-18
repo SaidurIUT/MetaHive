@@ -1,0 +1,115 @@
+/* src/components/basicComponents/navbar.css */
+
+
+.navbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(20, 20, 30, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 80px; /* Specify a fixed height */
+}
+
+.navbar-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+.navbar-logo .logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #00ffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-logo .logo-text:hover {
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #a0a0a0;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #00ffff;
+  transform: scale(1.05);
+}
+
+.nav-link span {
+  font-size: 0.9rem;
+}
+
+.user-display {
+  color: #00ffff;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+}
+
+.login-btn,
+.logout-btn {
+  background-color: transparent;
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.login-btn:hover,
+.logout-btn:hover {
+  background-color: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+/* Mobile Responsiveness */
+.mobile-menu-toggle {
+  display: none;
+  color: #00ffff;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(20, 20, 30, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+  }
+
+  .navbar-links.active {
+    display: flex;
+  }
+}
