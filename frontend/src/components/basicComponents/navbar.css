@@ -1,16 +1,15 @@
 /* src/components/basicComponents/navbar.css */
 
-
 .navbar-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(20, 20, 30, 0.8);
+  background-color: var(--color-bg-paper);
   backdrop-filter: blur(10px);
   z-index: 1000;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  height: 80px; /* Specify a fixed height */
+  box-shadow: var(--color-shadow);
+  height: 80px;
 }
 
 .navbar-wrapper {
@@ -25,14 +24,14 @@
 .navbar-logo .logo-text {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #00ffff;
+  color: var(--color-primary);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .navbar-logo .logo-text:hover {
-  color: #00ffff;
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  color: var(--color-primary);
+  text-shadow: 0 0 10px var(--color-primary-hover-shadow);
 }
 
 .navbar-links {
@@ -45,13 +44,13 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #a0a0a0;
+  color: var(--color-text-primary);
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
 .nav-link:hover {
-  color: #00ffff;
+  color: var(--color-primary);
   transform: scale(1.05);
 }
 
@@ -60,7 +59,7 @@
 }
 
 .user-display {
-  color: #00ffff;
+  color: var(--color-primary);
   font-size: 0.9rem;
   margin-left: 1rem;
 }
@@ -68,8 +67,8 @@
 .login-btn,
 .logout-btn {
   background-color: transparent;
-  border: 2px solid #00ffff;
-  color: #00ffff;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
   padding: 0.5rem 1rem;
   border-radius: 5px;
   cursor: pointer;
@@ -81,14 +80,14 @@
 
 .login-btn:hover,
 .logout-btn:hover {
-  background-color: rgba(0, 255, 255, 0.1);
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  background-color: var(--color-primary-hover-bg);
+  box-shadow: 0 0 10px var(--color-primary-hover-shadow);
 }
 
 /* Mobile Responsiveness */
 .mobile-menu-toggle {
   display: none;
-  color: #00ffff;
+  color: var(--color-primary);
   cursor: pointer;
 }
 
@@ -104,7 +103,7 @@
     top: 100%;
     left: 0;
     width: 100%;
-    background-color: rgba(20, 20, 30, 0.9);
+    background-color: var(--color-bg-paper);
     backdrop-filter: blur(10px);
     padding: 1rem;
   }
