@@ -7,6 +7,7 @@ import com.metahive.OfficeService.services.OfficeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,8 +24,8 @@ public class OfficeServiceImpl implements OfficeService {
         office.setOfficeName(officeDTO.getOfficeName());
         office.setDescription(officeDTO.getDescription());
         office.setCreatedBy(officeDTO.getCreatedBy());
-        office.setCreatedOn(officeDTO.getCreatedOn());
-        office.setImageName(officeDTO.getImageName());
+        office.setCreatedOn(new Date());
+        office.setImageName("default.png");
         office = officeRepository.save(office);
         officeDTO.setOfficeId(office.getOfficeId());
         return officeDTO;

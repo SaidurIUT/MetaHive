@@ -6,8 +6,8 @@ import com.metahive.OfficeService.payloads.AdminDTO;
 import java.util.List;
 
 public interface AdminService {
-    AdminDTO addAdmin(AdminDTO adminDTO);
-    AdminDTO getAdminById(Long id);
+    AdminDTO addAdminToOffice(AdminDTO adminDTO);
     List<AdminDTO> getAllAdmins();
-    void removeAdmin(Long id);
+    List<AdminDTO> getAllAdminsByOfficeId(Long officeId);
+    void removeAdminByOfficeId(Long id);
 }
