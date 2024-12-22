@@ -40,6 +40,12 @@ public class MemberController {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/{userId}/office/{officeId}")
+    public ResponseEntity<Void> removeMemberByUserId(@PathVariable String userId, @PathVariable Long officeId) {
+      memberService.removeAdminByUserIdAndOfficeId(userId, officeId);
+      return ResponseEntity.noContent().build();
+    };
+
     @GetMapping("/check")
     public ResponseEntity<Boolean> checkMemberExists(@RequestBody MemberDTO memberDTO) {
         Boolean exists = memberService.isMemberExistInThisOffice(memberDTO);

@@ -48,7 +48,7 @@ public class MemberServiceImpl implements MemberService {
         officeRepository.findById(officeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Office", "id", officeId));
 
-        List<Member> members = memberRepository.findByOfficeOfficeId(officeId);
+        List<Member> members = memberRepository.findByOfficeId(officeId);
 
         if (members.isEmpty()) {
             throw new ResourceNotFoundException("Members", "officeId", officeId);
@@ -69,7 +69,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Boolean isMemberExistInThisOffice(MemberDTO memberDTO) {
-        return memberRepository.existsByUserIdAndOfficeOfficeId(
+        return memberRepository.existsByUserIdAndOfficeId(
                 memberDTO.getUserId(),
                 memberDTO.getOfficeId()
         );
@@ -78,12 +78,18 @@ public class MemberServiceImpl implements MemberService {
     @Override
     @Transactional
     public void removeMemberByOfficeId(Long id) {
-        memberRepository.deleteByOfficeOfficeId(id);
+        memberRepository.deleteByOfficeId(id);
+    }
+
+    @Override
+    @Transactional
+    public void removeAdminByUserIdAndOfficeId(String userId, Long officeId) {
+        memberRepository.deleteByUserIdAndOfficeId(userId, officeId);
     }
 
     // Additional useful methods
     public List<MemberDTO> getMembersByOfficeId(Long officeId) {
-        List<Member> members = memberRepository.findByOfficeOfficeId(officeId);
+        List<Member> members = memberRepository.findByOfficeId(officeId);
         return members.stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
@@ -99,7 +105,7 @@ public class MemberServiceImpl implements MemberService {
         return new MemberDTO(
                 member.getId(),
                 member.getUserId(),
-                member.getOffice().getOfficeId()
+                member.getOffice().getId()
         );
     }
 }

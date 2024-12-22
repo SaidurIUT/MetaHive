@@ -1,8 +1,12 @@
 package com.metahive.OfficeService.services.impl;
 
 import com.metahive.OfficeService.entities.Office;
+import com.metahive.OfficeService.payloads.AdminDTO;
+import com.metahive.OfficeService.payloads.MemberDTO;
 import com.metahive.OfficeService.payloads.OfficeDTO;
 import com.metahive.OfficeService.repositories.OfficeRepository;
+import com.metahive.OfficeService.services.AdminService;
+import com.metahive.OfficeService.services.MemberService;
 import com.metahive.OfficeService.services.OfficeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +21,11 @@ public class OfficeServiceImpl implements OfficeService {
     @Autowired
     private OfficeRepository officeRepository;
 
+    @Autowired
+    private MemberService memberService ;
+    @Autowired
+    private AdminService adminService;
+
     @Override
     public OfficeDTO createOffice(OfficeDTO officeDTO) {
         Office office = new Office();
@@ -27,7 +36,17 @@ public class OfficeServiceImpl implements OfficeService {
         office.setCreatedOn(new Date());
         office.setImageName("default.png");
         office = officeRepository.save(office);
-        officeDTO.setOfficeId(office.getOfficeId());
+        officeDTO.setId(office.getId());
+        MemberDTO memberDTO = new MemberDTO();
+        memberDTO.setUserId(office.getCreatedBy());
+        memberDTO.setOfficeId(office.getId());
+        memberService.addMemberToOffice(memberDTO);
+        AdminDTO adminDTO = new AdminDTO();
+        adminDTO.setUserId(office.getCreatedBy());
+        adminDTO.setOfficeId(office.getId());
+        adminService.addAdminToOffice(adminDTO);
+
+
         return officeDTO;
     }
 
@@ -62,7 +81,7 @@ public class OfficeServiceImpl implements OfficeService {
 
     private OfficeDTO mapToDTO(Office office) {
         OfficeDTO dto = new OfficeDTO();
-        dto.setOfficeId(office.getOfficeId());
+        dto.setId(office.getId());
         dto.setOfficeName(office.getOfficeName());
         dto.setDescription(office.getDescription());
         dto.setCreatedBy(office.getCreatedBy());

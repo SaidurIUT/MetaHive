@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/office")
+@RequestMapping("/os/office")
 public class OfficeController {
 
     @Autowired

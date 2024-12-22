@@ -11,4 +11,5 @@ public interface MemberService {
     List<MemberDTO> getAllMembersByOfficeId(Long officeId);
     Boolean isMemberExistInThisOffice(MemberDTO memberDTO) ;
     void removeMemberByOfficeId(Long id);
+    void removeAdminByUserIdAndOfficeId(String userId, Long officeId);
 }

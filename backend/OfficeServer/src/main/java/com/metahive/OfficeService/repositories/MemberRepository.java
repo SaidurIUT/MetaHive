@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
-    List<Member> findByOfficeOfficeId(Long officeId);
-    Optional<Member> findByUserIdAndOfficeOfficeId(String userId, Long officeId);
-    boolean existsByUserIdAndOfficeOfficeId(String userId, Long officeId);
-    void deleteByOfficeOfficeId(Long officeId);
+    List<Member> findByOfficeId(Long officeId);
+    Optional<Member> findByUserIdAndOfficeId(String userId, Long officeId);
+    boolean existsByUserIdAndOfficeId(String userId, Long officeId);
+    void deleteByUserIdAndOfficeId(String userId, Long officeId);
+    void deleteByOfficeId(Long officeId);
 }

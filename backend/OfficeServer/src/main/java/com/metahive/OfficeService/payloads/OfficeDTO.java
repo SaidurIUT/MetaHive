@@ -11,7 +11,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OfficeDTO {
-    private Long officeId;
+    private Long id;
     private String officeName;
     private String description;
     private String createdBy;
