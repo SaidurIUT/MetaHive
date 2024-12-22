@@ -9,5 +9,7 @@ public interface AdminService {
     AdminDTO addAdminToOffice(AdminDTO adminDTO);
     List<AdminDTO> getAllAdmins();
     List<AdminDTO> getAllAdminsByOfficeId(Long officeId);
+    Boolean isAdminExistInThisOffice(AdminDTO adminDTO);
     void removeAdminByOfficeId(Long id);
+    void removeAdminByUserIdAndOfficeId(String userId, Long officeId);
 }

@@ -19,7 +19,7 @@ import java.util.Set;
 public class Office {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long officeId;
+    private Long id;
 
     private String officeName;
 
